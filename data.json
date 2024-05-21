@@ -18,5 +18,35 @@
     "title": "Brave New World",
     "author": "Aldous Huxley",
     "id": 4
+  },
+  {
+    "id": 5,
+    "title": "Doremon",
+    "author": "JK Rowling"
+  },
+  {
+    "title": "123",
+    "author": "JK Rowling",
+    "id": 6
+  },
+  {
+    "title": "Tĩnh Lặng",
+    "author": "Thầy Thích Nhất Hạnh",
+    "id": 7
+  },
+  {
+    "title": "Rừng Na Uy ",
+    "author": "Dilys",
+    "id": 8
+  },
+  {
+    "title": "Rừng Na Uy ",
+    "author": "123",
+    "id": 9
+  },
+  {
+    "title": "Rừng Na Uy ",
+    "author": 123,
+    "id": 10
   }
 ]
