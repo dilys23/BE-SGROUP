@@ -8,7 +8,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
     try {
-        const result = await conn.query(`select * from customers where CustomerID = ${id}`);
+        const result = await conn.query(`select * from customers where CustomerID =?`, [id]);
         console.log(result);
         return result[0]
     } catch (err) {
@@ -18,9 +18,9 @@ const getUserById = async (id) => {
 
 
 }
-const createUser = async (id, user) => {
+const createUser = async (user) => {
     try {
-        const result = await conn.query(`insert into customers (FirstName, LastName, Email) values("${user.FirstName}", "${user.LastName}", "${user.Email}"`);
+        const result = await conn.query(`insert into customers (FirstName, LastName, Email) values(?,?,?)`, [user.FirstName, user.LastName, user.Email]);
         console.log(result);
         return result[0];
     } catch (err) {
@@ -30,9 +30,9 @@ const createUser = async (id, user) => {
 
 }
 
-const updatedUser = async (id) => {
+const updateUser = async (id) => {
     try {
-        const result = await conn.query(`update customers set FirstName = "Dilysnguyen" where CustomerID = ${id}`);
+        const result = await conn.query(`update customers set FirstName = "Dilysnguyen" where CustomerID = ?`, [id]);
         console.log(result);
         return result[0];
     } catch (err) {
@@ -44,7 +44,8 @@ const updatedUser = async (id) => {
 
 const deleteUser = async (id) => {
     try {
-        const result = await conn.query(`delete * customers  where CustomerID = ${id}`);
+        // const result = await conn.query(`delete from customers  where CustomerID = ${id}`); // SQL injection : cách này dễ khiến hacker chèn thêm câu lệnh xóa dữ liệu DELETE FROM customers WHERE CustomerID = 1; DROP TABLE customers;
+        const result = await conn.query(`delete from customers  where CustomerID = ?`, [id]);
         console.log(result);
         return result[0];
 
@@ -53,4 +54,11 @@ const deleteUser = async (id) => {
         throw (err);
 
     }
+}
+module.exports = {
+    getAllUsers,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
 }
