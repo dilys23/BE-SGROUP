@@ -1,7 +1,7 @@
 const db = require("../database/connection");
 
 const getAllUsers = async () => {
-    const result = await db.query("select * from customers");
+    const result = await db.query("select * from users");
     console.log(result);
     return result[0];
     //your code goes here
@@ -10,7 +10,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
     try {
-        const result = await db.query(`SELECT * FROM customers WHERE CustomerID = ${id}`);
+        const result = await db.query(`SELECT * FROM users WHERE user_id = ${id}`);
         console.log(result);
         return result[0];
         //your code goes here
