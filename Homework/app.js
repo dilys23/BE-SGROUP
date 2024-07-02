@@ -5,9 +5,7 @@ const router = require('./routes/index');
 const session = require('express-session');
 
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/', router);
 app.set('view engine', 'ejs');
@@ -18,9 +16,4 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-
 module.exports = app;
-
-
-
-// START command: npm run start / node bin/www
