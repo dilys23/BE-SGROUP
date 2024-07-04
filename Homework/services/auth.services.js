@@ -22,7 +22,7 @@ const registerService = async (user) => {
         await db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
         return {
             username,
-            email, 
+            email,
             hashedPassword,
         };
     } catch (error) {
@@ -69,8 +69,22 @@ const loginService = async (user) => {
         };
     }
 }
-
+const validateService = async (email) => {
+    try {
+        const result = await db.query('SELECT email FROM users WHERE email = ?', [email]);
+        console.log(result);
+        if (result[0].length === 0) {
+            return { error: 'Email does not exist in the database' };
+           
+        } else {
+            return { email };
+        }
+    } catch (error) {
+        return { error: 'Database query failed' };
+    }
+};
 module.exports = {
+    validateService,
     registerService,
     loginService
 }
